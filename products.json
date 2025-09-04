@@ -1,0 +1,146 @@
+[
+    {
+        "id": 1,
+        "name": "Gold Ring",
+        "price": "Available",
+        "image": "images/r11.jpg",
+        "category": "Gold Ring",
+        "description": "Embrace timeless elegance with this exquisite gold-toned ring, featuring a delicate lotus-inspired crown design and a captivating central opal stone. "
+    },
+    {
+        "id": 2,
+        "name": "Gold Ring",
+        "price": "Available",
+        "image": "images/r2.jpg",
+        "category": "Gold Ring",
+        "description": "This exquisite gold ring features a delicate floral design, capturing the timeless beauty of nature in a wearable art piece"
+    },
+    {
+        "id": 3,
+        "name": "Gold Ring",
+        "price": "Available",
+        "image": "images/r3.jpg",
+        "category": "Gold Ring",
+        "description": "This elegant gold ring features a brilliant diamond solitaire, set within a unique, contemporary band design. "
+    },
+    {
+        "id": 4,
+        "name": "Gold Ring",
+        "price": "Available",
+        "image": "images/r4.jpg",
+        "category": "Gold Ring",
+        "description": "This elegant ring features a beautifully crafted lotus flower design, symbolizing purity, enlightenment, and new beginnings. Perfect for adding a touch of spiritual grace and natural beauty to your everyday style or for special occasions. "
+    },
+    {
+        "id": 5,
+        "name": "Bangeles",
+        "price": "Available",
+        "image": "images/b11.jpg",
+        "category": "Bangeles",
+        "description": "These are exquisite gold-plated bangles, featuring intricate antique designs and vibrant stone embellishments, ideal for enhancing traditional and festive attire."
+    },
+    {
+        "id": 6,
+        "name": "Mangalsutr",
+        "price": "Available",
+        "image": "images/mm1.jpg",
+        "category": "Mangalsutr",
+        "description": "This image showcases an exquisite gold mangalsutra, a traditional Indian necklace symbolizing marital bliss and commitment. The design features a delicate chain adorned with black beads, culminating in a beautifully crafted gold pendant. "
+    },
+    {
+        "id": 7,
+        "name": "Mangalsutr",
+        "price": "Available",
+        "image": "images/mm2.jpg",
+        "category": "Mangalsutr",
+        "description": "This exquisite gold mangalsutra set features a traditional design with intricate details, ideal for showcasing cultural heritage and elegance."
+    },
+    {
+        "id": 8,
+        "name": "Mangalsutr",
+        "price": "Available",
+        "image": "images/mm3.jpg",
+        "category": "Mangalsutr",
+        "description": "This elegant mangalsutra features a contemporary design with a striking diamond-studded pendant suspended from a classic black-beaded and gold chain. "
+    },
+    {
+        "id": 9,
+        "name": "Mangalsutr",
+        "price": "Available",
+        "image": "images/mm4.jpg",
+        "category": "Mangalsutr",
+        "description": "his exquisite mangalsutra features a stunning design, perfect for adding a touch of traditional elegance to your ensemble"
+    },
+    {
+        "id": 10,
+        "name": "Mangalsutr",
+        "price": "Available",
+        "image": "images/m5.jpg",
+        "category": "Mangalsutr",
+        "description": "Elevate your elegance with these stunning gold earrings, meticulously crafted to capture timeless beauty and intricate detail. Each earring features a delicate floral stud from which a gracefully designed leaf motif descends, leading to an ornate, scalloped crescent-shaped base."
+    },
+    {
+        "id": 11,
+        "name": "Gold Coins",
+        "price": "Available",
+        "image": "images/c1.jpg",
+        "category": "Gold Coins",
+        "description": "Elevate your elegance with these stunning gold earrings, meticulously crafted to capture timeless beauty and intricate detail. Each earring features a delicate floral stud from which a gracefully designed leaf motif descends, leading to an ornate, scalloped crescent-shaped base."
+    },
+    {
+        "id": 12,
+        "name": "Gold Coins",
+        "price": "Available",
+        "image": "images/c2.jpg",
+        "category": "Gold Coins",
+        "description": "gold coin with pure gold"
+    },
+    {
+        "id": 13,
+        "name": "Gold Coins",
+        "price": "Available",
+        "image": "images/c4.jpg",
+        "category": "Gold Coins",
+        "description": "gold coin with pure gold"
+    },
+    {
+        "id": 14,
+        "name": "Gold Coins",
+        "price": "Available",
+        "image": "images/c5.jpg",
+        "category": "Gold Coins",
+        "description": "gold coin with pure gold"
+    },
+    {
+        "id": 15,
+        "name": "Earring",
+        "price": "Available",
+        "image": "images/h1.jpg",
+        "category": "Earring",
+        "description": "These exquisite earrings showcase a classic, ornate design with a matte gold finish, exuding an antique charm. "
+    },
+    {
+        "id": 16,
+        "name": "Earring",
+        "price": "Available",
+        "image": "images/h2.jpg",
+        "category": "Earring",
+        "description": "These stunning earrings showcase a rich, antique gold finish with detailed craftsmanship. The design features a prominent fan-shaped base adorned with elaborate floral patterns and delicate beadwork, reminiscent of traditional temple jewelry."
+    },
+    {
+        "id": 17,
+        "name": "Earring",
+        "price": "Available",
+        "image": "images/h3.jpg",
+        "category": "Earring",
+        "description": "Elevate your elegance with these stunning gold earrings, meticulously crafted to capture timeless beauty and intricate detail. Each earring features a delicate floral stud from which a gracefully designed leaf motif descends, leading to an ornate, scalloped crescent-shaped base."
+    },
+    {
+        "id": 18,
+        "name": "Earring",
+        "price": "Available",
+        "image": "images/h4.jpg",
+        "category": "Earring",
+        "description": "Elevate your elegance with these stunning gold earrings, meticulously crafted to capture timeless beauty and intricate detail. Each earring features a delicate floral stud from which a gracefully designed leaf motif descends, leading to an ornate, scalloped crescent-shaped base. "
+    }
+]

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jewellery Products</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 20px;">
+
+  <h2 style="text-align:center;">Jewellery Products List</h2>
+
+  <!-- Search + Filter + Add Product Button -->
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:10px;">
+
+    <!-- Search -->
+    <input type="text" id="searchBox" placeholder="Search by Name or HUID..." 
+           onkeyup="applyFilter()" 
+           style="flex:1; padding:6px 10px; border:1px solid #ccc; border-radius:5px;">
+
+    <!-- Filter -->
+    <div>
+      <label for="filter" style="font-weight:bold; margin-right:10px;">Filter by Jewellery Type:</label>
+      <select id="filter" onchange="applyFilter()" 
+              style="padding:6px 10px; border:1px solid #ccc; border-radius:5px;">
+        <option value="All">All</option>
+        <option value="Gold">Gold</option>
+        <option value="Silver">Silver</option>
+        <option value="Diamond">Diamond</option>
+      </select>
+    </div>
+
+    <!-- Add Product -->
+    <button onclick="openForm()" 
+      style="padding:8px 15px; background:#800000; color:white; border:none; border-radius:5px; cursor:pointer;">
+      + Add Product
+    </button>
+  </div>
+
+  <!-- Table -->
+  <div style="overflow-x:auto;">
+    <table border="1" cellpadding="10" cellspacing="0" 
+           style="width:100%; border-collapse:collapse; text-align:center;">
+      <thead style="background:#800000; color:white;">
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>HUID No</th>
+          <th>Gender</th>
+          <th>Description</th>
+          <th>Jewellery Type</th>
+          <th>Karat (gm)</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="productTable"></tbody>
+    </table>
+  </div>
+
+  <!-- Popup Form -->
+  <div id="popupForm" 
+       style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6);">
+    <div style="background:white; padding:20px; width:400px; margin:80px auto; border-radius:10px; position:relative;">
+      <h3 id="formTitle" style="margin-top:0; text-align:center;">Add Product</h3>
+      <form id="productForm" onsubmit="saveProduct(event)">
+        <input type="hidden" id="editIndex">
+        
+        <label>Name:</label>
+        <input type="text" id="pname" required style="width:100%; margin:5px 0; padding:5px;"><br>
+        
+        <label>Type:</label>
+        <input type="text" id="ptype" required style="width:100%; margin:5px 0; padding:5px;"><br>
+        
+        <label>HUID No:</label>
+        <input type="text" id="phuid" required style="width:100%; margin:5px 0; padding:5px;"><br>
+        
+        <label>Gender:</label>
+        <select id="pgender" required style="width:100%; margin:5px 0; padding:5px;">
+          <option value="Women">Women</option>
+          <option value="Men">Men</option>
+          <option value="Unisex">Unisex</option>
+        </select><br>
+        
+        <label>Description:</label>
+        <textarea id="pdesc" required style="width:100%; margin:5px 0; padding:5px;"></textarea><br>
+        
+        <label>Jewellery Type:</label>
+        <select id="pjtype" required style="width:100%; margin:5px 0; padding:5px;">
+          <option value="Gold">Gold</option>
+          <option value="Silver">Silver</option>
+          <option value="Diamond">Diamond</option>
+        </select><br>
+        
+        <label>Karat (gm):</label>
+        <input type="number" id="pkarat" required style="width:100%; margin:5px 0; padding:5px;"><br>
+        
+        <label>Image URL:</label>
+        <input type="text" id="pimage" placeholder="https://..." required style="width:100%; margin:5px 0; padding:5px;"><br>
+        
+        <label>Status:</label>
+        <select id="pstatus" required style="width:100%; margin:5px 0; padding:5px;">
+          <option value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+        </select><br>
+
+        <div style="text-align:center; margin-top:10px;">
+          <button type="submit" 
+                  style="padding:6px 12px; background:green; color:white; border:none; border-radius:5px; cursor:pointer;">
+            Save
+          </button>
+          <button type="button" onclick="closeForm()" 
+                  style="padding:6px 12px; background:red; color:white; border:none; border-radius:5px; cursor:pointer;">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script>
+    let products = [
+      {name:"Gold Ring", type:"Ring", huid:"12345", gender:"Women", availability:"Active", desc:"Elegant gold ring with diamond.", jtype:"Gold", karat:"22", image:"https://via.placeholder.com/80?text=Gold+Ring"},
+      {name:"Silver Chain", type:"Chain", huid:"67890", gender:"Men", availability:"Inactive", desc:"Stylish silver chain.", jtype:"Silver", karat:"10", image:"https://via.placeholder.com/80?text=Silver+Chain"},
+      {name:"Diamond Earrings", type:"Earrings", huid:"24680", gender:"Women", availability:"Active", desc:"Shiny diamond earrings.", jtype:"Diamond", karat:"18", image:"https://via.placeholder.com/80?text=Diamond+Earrings"}
+    ];
+
+    function renderTable(data) {
+      const table = document.getElementById("productTable");
+      table.innerHTML = "";
+      if (data.length === 0) {
+        table.innerHTML = `<tr><td colspan="10" style="text-align:center; color:gray;">No products found</td></tr>`;
+        return;
+      }
+      data.forEach((p, index) => {
+        let row = `
+          <tr>
+            <td><img src="${p.image}" alt="${p.name}" style="width:70px; height:70px; object-fit:cover; border-radius:5px;"></td>
+            <td>${p.name}</td>
+            <td>${p.type}</td>
+            <td>${p.huid}</td>
+            <td>${p.gender}</td>
+            <td>${p.desc}</td>
+            <td>${p.jtype}</td>
+            <td>${p.karat}</td>
+            <td style="color:${p.availability==='Active'?'green':'red'};">${p.availability}</td>
+            <td>
+              <button onclick="toggleStatus(${index})"
+                style="padding:5px 10px; background:${p.availability==='Active'?'orange':'green'}; color:white; border:none; border-radius:5px; cursor:pointer; margin-right:5px;">
+                ${p.availability==='Active'?'Deactivate':'Activate'}
+              </button>
+              <button onclick="editProduct(${index})"
+                style="padding:5px 10px; background:blue; color:white; border:none; border-radius:5px; cursor:pointer;">
+                Edit
+              </button>
+            </td>
+          </tr>
+        `;
+        table.innerHTML += row;
+      });
+    }
+
+    function toggleStatus(index) {
+      products[index].availability = products[index].availability === "Active" ? "Inactive" : "Active";
+      applyFilter();
+    }
+
+    function applyFilter() {
+      const filterValue = document.getElementById("filter").value;
+      const searchValue = document.getElementById("searchBox").value.toLowerCase();
+
+      let filtered = products.filter(p => {
+        let matchesFilter = filterValue === "All" || p.jtype === filterValue;
+        let matchesSearch = p.name.toLowerCase().includes(searchValue) || p.huid.toLowerCase().includes(searchValue);
+        return matchesFilter && matchesSearch;
+      });
+
+      renderTable(filtered);
+    }
+
+    function openForm() {
+      document.getElementById("popupForm").style.display = "block";
+      document.getElementById("formTitle").innerText = "Add Product";
+      document.getElementById("productForm").reset();
+      document.getElementById("editIndex").value = "";
+    }
+
+    function closeForm() {
+      document.getElementById("popupForm").style.display = "none";
+      document.getElementById("productForm").reset();
+    }
+
+    function saveProduct(event) {
+      event.preventDefault();
+      const editIndex = document.getElementById("editIndex").value;
+      const newProduct = {
+        name: document.getElementById("pname").value,
+        type: document.getElementById("ptype").value,
+        huid: document.getElementById("phuid").value,
+        gender: document.getElementById("pgender").value,
+        desc: document.getElementById("pdesc").value,
+        jtype: document.getElementById("pjtype").value,
+        karat: document.getElementById("pkarat").value,
+        image: document.getElementById("pimage").value,
+        availability: document.getElementById("pstatus").value
+      };
+
+      if (editIndex === "") {
+        // Add new product
+        products.push(newProduct);
+      } else {
+        // Update existing
+        products[editIndex] = newProduct;
+      }
+
+      closeForm();
+      applyFilter();
+    }
+
+    function editProduct(index) {
+      const p = products[index];
+      document.getElementById("popupForm").style.display = "block";
+      document.getElementById("formTitle").innerText = "Edit Product";
+      document.getElementById("editIndex").value = index;
+
+      document.getElementById("pname").value = p.name;
+      document.getElementById("ptype").value = p.type;
+      document.getElementById("phuid").value = p.huid;
+      document.getElementById("pgender").value = p.gender;
+      document.getElementById("pdesc").value = p.desc;
+      document.getElementById("pjtype").value = p.jtype;
+      document.getElementById("pkarat").value = p.karat;
+      document.getElementById("pimage").value = p.image;
+      document.getElementById("pstatus").value = p.availability;
+    }
+
+    // Initial load
+    applyFilter();
+  </script>
+
+</body>
+</html>
