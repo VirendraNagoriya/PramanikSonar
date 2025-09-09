@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Detail</title>
+  <link rel="stylesheet" href="web-css/dstyle.css">
+
+  <style>
+    /* Zoom Effect */
+    .image img {
+      width: 100%;
+      max-width: 400px;
+      transition: transform 0.4s ease;
+      cursor: zoom-in;
+    }
+
+    .image img:hover {
+      transform: scale(1.2); /* Zoom effect */
+    }
+
+    /* Similar product images */
+    .listProduct .item img {
+      width: 200px;
+      height: auto;
+      transition: transform 0.3s ease;
+      cursor: zoom-in;
+    }
+
+    .listProduct .item img:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  
+
+    <div class="container">
+
+    <!-- Back Button -->
+    <a href="collection.html" class="back-btn">
+      ← Back
+    </a>
+
+    <!-- Product Detail Section -->
+    <div class="title">PRODUCT DETAIL</div>
+    <div class="detail">
+      <div class="image">
+        <img src="" alt="Product Image">
+      </div>
+      <div class="content">
+        <h1 class="name"></h1>
+        <div class="price"></div>
+        <div class="buttons">
+          <button class="checkout">Check Out</button>
+          <button class="add-cart">
+            Add To Cart 
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 
+                      4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 
+                      7L3 4m0 0-.792-3H1"/>
+              </svg>
+            </span>
+          </button>
+        </div>
+        <div class="description"></div>
+      </div>
+    </div>
+
+    <!-- Similar Products Section -->
+    <!-- <div class="title">Similar Products</div>
+    <div class="listProduct"></div>
+  </div> -->
+
+  <script>
+  let products = null;
+  fetch('products.json')
+    .then(response => response.json())
+    .then(data => {
+      products = data;
+      showDetail();
+    });
+
+  function showDetail() {
+    let detail = document.querySelector('.detail');
+    let listProduct = document.querySelector('.listProduct');
+    let productId = new URLSearchParams(window.location.search).get('id');
+    let thisProduct = products.filter(value => value.id == productId)[0];
+
+    if (!thisProduct) window.location.href = "/";
+
+    // Set product details
+    detail.querySelector('.image img').src = thisProduct.image;
+    detail.querySelector('.name').innerText = thisProduct.name;
+    detail.querySelector('.price').innerText = thisProduct.price;
+    detail.querySelector('.description').innerText = thisProduct.description;
+
+    // Show only products from the same category
+  //   let similarProducts = products.filter(
+  //     value => value.id != productId && value.category === thisProduct.category
+  //   );
+
+  //   // If no similar products found, show a fallback
+  //   if (similarProducts.length === 0) {
+  //     listProduct.innerHTML = "<p>No similar products found.</p>";
+  //   } else {
+  //     listProduct.innerHTML = "";
+  //     similarProducts.forEach(product => {
+  //       let newProduct = document.createElement('a');
+  //       newProduct.href = 'detail.html?id=' + product.id;
+  //       newProduct.classList.add('item');
+  //       newProduct.innerHTML = `
+  //         <img src="${product.image}" alt="${product.name}">
+  //         <h2>${product.name}</h2>
+  //         <div class="price">$${product.price}</div>
+  //       `;
+  //       listProduct.appendChild(newProduct);
+  //     });
+  //   }
+   }
+</script>
+</body>
+</html>

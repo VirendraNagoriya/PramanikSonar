@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pramani Sonar</title>
+  <link rel="icon" href="images/logo file/icononly_transparent_nobuffer.png" type="image/gif" />
+<!-- ✅ Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!-- ✅ Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- ✅ Custom CSS-->
+  <link href="web-css/details.css" rel="stylesheet" />
+  <link href="web-css/dstyle.css" rel="stylesheet"/>
+
+  <!-- ✅ Scripts (Bootstrap needs these) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+      <!-- ✅ Navbar -->
+  <header class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        
+       <!--logo-->
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="images/logo2.png" alt="Gold Shop Logo" class="logo-img">
+        
+      </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="offers.html">Offers</a></li>
+            <li class="nav-item"><a class="nav-link" href="collection.html">Collection</a></li>
+            <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+   <!-- Product Detail Section -->
+    <div class="title">PRODUCT DETAIL</div>
+    <div class="detail">
+      <div class="image">
+        <img src="" alt="Product Image">
+      </div>
+      <div class="content">
+        <h1 class="name"></h1>
+        <div class="price"></div>
+        <div class="buttons">
+          <button class="checkout">Check Out</button>
+          <button class="add-cart">
+            Add To Cart 
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 
+                      4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 
+                      7L3 4m0 0-.792-3H1"/>
+              </svg>
+            </span>
+          </button>
+        </div>
+        <div class="description"></div>
+      </div>
+    </div>
+
+    <!-- Similar Products Section -->
+    <div class="title">Similar Products</div>
+    <div class="listProduct"></div>
+  </div>
+
+  <script>
+    let products = null;
+    fetch('products.json')
+      .then(response => response.json())
+      .then(data => {
+        products = data;
+        showDetail();
+      });
+
+    function showDetail() {
+      let detail = document.querySelector('.detail');
+      let listProduct = document.querySelector('.listProduct');
+      let productId = new URLSearchParams(window.location.search).get('id');
+      let thisProduct = products.filter(value => value.id == productId)[0];
+
+      if (!thisProduct) window.location.href = "/";
+
+      detail.querySelector('.image img').src = thisProduct.image;
+      detail.querySelector('.name').innerText = thisProduct.name;
+      detail.querySelector('.price').innerText = '$' + thisProduct.price;
+      detail.querySelector('.description').innerText = thisProduct.description;
+
+      (products.filter(value => value.id != productId)).forEach(product => {
+        let newProduct = document.createElement('a');
+        newProduct.href = 'details.html?id=' + product.id;
+        newProduct.classList.add('item');
+        newProduct.innerHTML =
+          `<img src="${product.image}" alt="">
+           <h2>${product.name}</h2>
+           <div class="price">$${product.price}</div>`;
+        listProduct.appendChild(newProduct);
+      });
+    }
+  </script>
+
+
+ <!--whatsapp call-->
+      <a href="https://wa.me/919999999999?text=Hello%2C%20I%20have%20an%20inquiry%20about%20your%20jewelry%20collection."
+      class="whatsapp-float"
+      target="_blank"
+      title="Chat with us on WhatsApp">
+      <img
+        src="https://img.icons8.com/color/48/000000/whatsapp--v1.png"
+        alt="WhatsApp Icon"/>
+    </a>
+    <a href="tel:+919999999999" class="phone-float" title="Call Us">
+      <img
+        src="https://img.icons8.com/color/48/000000/phone.png"
+        alt="Phone Icon"/>
+    </a>
+
+    <!-- Footer -->
+<footer class="footer">
+  <div class="container text-center">
+    <h5 class="footer-title">Pramanik Sonar</h5>
+    <p class="footer-text">Pramanik Sonar Jewellery</p>
+
+    <div class="footer-links">
+      <a href="index.html">Home</a> |
+      <a href="about.html">About Us</a> |
+      <a href="offers.html">Offers</a>  |
+      <a href="collection.html">Collection</a>  |
+      <a href="contact.html">Contact</a> 
+      
+
+    <p class="copy-text">© 2025 Gold Shop | All Rights Reserved</p>
+  </div>
+</footer>
+ 
+
+
+  <script>
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const productItems = document.querySelectorAll('.product-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelector('.filter-btn.active').classList.remove('active');
+        btn.classList.add('active');
+
+        const category = btn.getAttribute('data-category');
+
+        productItems.forEach(item => {
+          if (category === 'all' || item.getAttribute('data-category') === category) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+
+
+</body>
+</html>
+
+
+
+

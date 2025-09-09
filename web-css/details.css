@@ -1,0 +1,203 @@
+/* Navbar Base */
+.navbar {
+  background: black !important;
+  height: 12%;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  transition: background 0.3s ease, padding 0.3s ease;
+}
+
+/* logo */
+.logo-img {
+  height: 90px;   /* 🔽 Reduced logo */
+  width: auto;
+  margin-right: 8px; /* spacing between logo and text */
+  filter: brightness(1.1) contrast(1.2);
+}
+
+/* Navbar Links */
+.navbar-nav {
+  margin-left: auto;
+}
+
+.navbar-nav .nav-link {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;  /* 🔥 Bolder */
+  font-size: 17px;
+  color:  #fcf9f9 !important;
+  margin-right: 22px;
+  text-transform: uppercase;  /* 🔥 Elegant CAPS */
+  letter-spacing: 1px;        /* 🔥 Stylish spacing */
+  position: relative;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover Underline Animation */
+.navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 0;
+  bottom: -6px;
+  background: #d4af37;
+  transition: width 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #d4af37 !important;
+  transform: scale(1.05);
+}
+
+.navbar-nav .nav-link:hover::after {
+  width: 100%;
+}
+
+/* Active Link */
+.navbar-nav .nav-link.active {
+  color: #d4af37 !important;
+}
+
+.navbar-nav .nav-link.active::after {
+  width: 100%;
+}
+
+/* Toggler */
+.navbar-toggler {
+  border: none;
+  background: black;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0,0.8)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  width: 28px;
+  height: 28px;
+}
+
+/* Mobile Menu */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background-color: #0c0c0c;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    
+  }
+
+  .navbar-nav .nav-link {
+    margin: 12px 0;
+    font-size: 16px;
+  }
+}
+
+/* Zoom Effect */
+    .image img {
+      width: 100%;
+      max-width: 400px;
+      transition: transform 0.4s ease;
+      cursor: zoom-in;
+    }
+
+    .image img:hover {
+      transform: scale(1.2); /* Zoom effect */
+    }
+
+    /* Similar product images */
+    .listProduct .item img {
+      width: 200px;
+      height: auto;
+      transition: transform 0.3s ease;
+      cursor: zoom-in;
+    }
+
+    .listProduct .item img:hover {
+      transform: scale(1.1);
+    }
+    /*whatsapp and Call */
+  .whatsapp-float,
+      .phone-float {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 100;
+        background-color: transparent; /* No background */
+        padding: 0;
+        border-radius: 0;
+        box-shadow: none;
+        transition: transform 0.3s ease;
+      }
+
+      .whatsapp-float img,
+      .phone-float img {
+        width: 40px;
+        height: 40px;
+        border-radius: 0; /* No circle */
+        box-shadow: none;
+      }
+
+      .phone-float {
+        bottom: 75px; /* Adjust spacing above WhatsApp */
+      }
+
+      .whatsapp-float::after,
+      .phone-float::after {
+        content: attr(title);
+        position: absolute;
+        right: 50px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        padding: 4px 8px;
+        font-size: 12px;
+        border-radius: 4px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .whatsapp-float:hover,
+      .phone-float:hover {
+        transform: scale(1.05);
+      }
+
+      .whatsapp-float:hover::after,
+      .phone-float:hover::after {
+        opacity: 1;
+      }
+    
+      /* Footer */
+    .footer {
+    background: #111;
+    color: #fff;
+    padding: 30px 10px;
+    margin-top: 40px;
+  }
+  .footer-title {
+    font-family: 'Cinzel', serif;
+    color: #FFD700;
+    margin-bottom: 5px;
+  }
+  .footer-text {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #ddd;
+  }
+  .footer-links a {
+    color: #FFD700;
+    text-decoration: none;
+    margin: 0 8px;
+    font-size: 14px;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover {
+    color: #fff;
+  }
+
+    
